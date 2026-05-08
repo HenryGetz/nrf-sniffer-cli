@@ -1,5 +1,6 @@
 /.coverage
 /.eggs
+__pycache__/
 nrf_sniffer_cli.egg-info
 htmlcov
 dist
