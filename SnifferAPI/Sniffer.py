@@ -135,6 +135,11 @@ class Sniffer(threading.Thread, SnifferCollector.SnifferCollector):
     def getTimestamp(self):
         self._packetReader.sendTimestampReq()
 
+    # Signal the Sniffer firmware to stop sniffing and enter idle mode.
+    # This stops the LED from blinking on the dongle.
+    def goIdle(self):
+        self._packetReader.sendGoIdle()
+
     # Set the preset COM port number. Only use this during startup. Set to None to search all ports.
     # Returns nothing.
     def setPortnum(self, portnum):

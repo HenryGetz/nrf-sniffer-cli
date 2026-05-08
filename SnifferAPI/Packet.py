@@ -72,9 +72,9 @@ class PacketReader(Notifications.Notifier):
         self.portnum = portnum
         try:
             self.uart = UART.Uart(portnum, baudrate)
-        except serial.SerialException as e:
-            logging.exception("Error opening UART %s" % str(e))
-            self.uart = UART.Uart()
+        except serial.SerialException:
+            logging.exception("Error opening UART on port %s, retrying", portnum)
+            self.uart = UART.Uart(portnum, baudrate)
         self.packetCounter = 0
         self.lastReceivedPacketCounter = 0
         self.lastReceivedPacket = None

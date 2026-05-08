@@ -111,8 +111,10 @@ def find_sniffer_baudrates(port, write_data=False):
 class Uart:
     def __init__(self, portnum=None, baudrate=None):
         self.ser = None
+        if baudrate is None:
+            baudrate = SNIFFER_BAUDRATES[0]
         try:
-            if baudrate is not None and baudrate not in SNIFFER_BAUDRATES:
+            if baudrate not in SNIFFER_BAUDRATES:
                 raise Exception("Invalid baudrate: " + str(baudrate))
 
             logging.info('Opening serial port {}'.format(portnum))
